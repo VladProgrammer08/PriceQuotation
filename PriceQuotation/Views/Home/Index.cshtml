@@ -1,8 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model PriceQuotation.Models.PriceQuote
+
+@{
+    ViewData["Title"] = "Price Quotation";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>Price Quote</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Subtotal" class="control-label"></label>
+                <input asp-for="Subtotal" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="DiscountAmount" class="control-label"></label>
+                <input type="text" disabled asp-for="DiscountAmount" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+               <span>@Html.DisplayFor(m =>m.Total)</span>
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Calculate Quote" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
